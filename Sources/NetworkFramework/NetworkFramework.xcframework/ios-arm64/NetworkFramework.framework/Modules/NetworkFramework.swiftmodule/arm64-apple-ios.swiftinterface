@@ -1,0 +1,30 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name NetworkFramework
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+@_exported import NetworkFramework
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+public enum LogState {
+  case enabled
+  case disabled
+  public static func == (a: NetworkFramework.LogState, b: NetworkFramework.LogState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NetworkRequest : ObjectiveC.NSObject, Foundation.URLSessionDelegate {
+  public static let shared: NetworkFramework.NetworkRequest
+  public func genericGETRequest<T>(urlString: Swift.String, token: Swift.String? = nil, logs: NetworkFramework.LogState = .enabled, cachePolicy: Foundation.NSURLRequest.CachePolicy = .reloadIgnoringLocalCacheData, completion: @escaping (_ responseObject: T?, _ error: Swift.Error?) -> Swift.Void) where T : Swift.Decodable, T : Swift.Encodable
+  public func getRequest(urlString: Swift.String, token: Swift.String? = nil, logs: NetworkFramework.LogState = .enabled, cachePolicy: Foundation.NSURLRequest.CachePolicy = .reloadIgnoringLocalCacheData, completion: @escaping (_ data: Foundation.Data?, _ error: Swift.Error?) -> Swift.Void)
+  public func postRequest(urlString: Swift.String, params: [Swift.String : Any], completion: @escaping (_ data: Foundation.Data?, _ error: Swift.Error?) -> Swift.Void)
+  public func putRequest(urlString: Swift.String, params: [Swift.String : Any], completion: @escaping (_ data: Foundation.Data?, _ error: Swift.Error?) -> Swift.Void)
+  public func deleteRequest(urlString: Swift.String, completion: @escaping (_ data: Foundation.Data?, _ error: Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+extension NetworkFramework.LogState : Swift.Equatable {}
+extension NetworkFramework.LogState : Swift.Hashable {}
